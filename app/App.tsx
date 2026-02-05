@@ -1,19 +1,20 @@
 import CountryCard from "@/components/CountryCard";
+import SearchComponent from "@/components/SearchComponent";
 import { api } from "@/utils/apis";
 import { addCountries } from "@/utils/countriesSlice";
 import { RootState } from "@/utils/store";
 import { Country } from "@/utils/types";
 import { useEffect, useState } from "react";
-import { ActivityIndicator, FlatList, Text, TextInput } from "react-native";
+import { ActivityIndicator, FlatList, Text } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useDispatch, useSelector } from "react-redux";
-import "../global.css";
-
+//https://restcountries.com/v3.1/region/{region} search by region api
 export default function App() {
   const dispatch = useDispatch();
   const totalCountries = useSelector((store: RootState) => store.country);
   const [isLoading, setIsLoading] = useState(true);
   const [countriesVisible, setCountriesVisible] = useState<Country[]>([]);
+
   const [search, setSearch] = useState<string>("");
   const handleSearch = (searchText: string) => {
     setSearch(searchText);
@@ -49,12 +50,7 @@ export default function App() {
   return (
     <SafeAreaView className="flex-1 items-center mx-5">
       <Text className="text-3xl font-bold m-5">Find Your Country</Text>
-      <TextInput
-        value={search}
-        className="w-full border border-black-5  p-5 rounded-3xl"
-        onChange={(e) => handleSearch(e.nativeEvent.text)}
-        placeholder="Search"
-      ></TextInput>
+      <SearchComponent search={search} handleSearch={handleSearch} />
       <FlatList
         data={countriesVisible}
         keyExtractor={(item) => item.name.official}

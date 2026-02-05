@@ -1,7 +1,7 @@
 import { addFavorite, removeFavorite } from "@/utils/favCountriesSlice";
 import { RootState } from "@/utils/store";
 import { Country } from "@/utils/types";
-import React, { useState } from "react";
+import React from "react";
 import { Image, Text, TouchableOpacity, View } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 const CountryCard = ({ item }: { item: Country }) => {
@@ -9,7 +9,6 @@ const CountryCard = ({ item }: { item: Country }) => {
   const favoritesFromStore = useSelector(
     (store: RootState) => store.favCountry,
   );
-  const [favorites, setFavorites] = useState<Country[]>([]);
   const handleFavorite = ({ item }: { item: Country }) => {
     if (
       favoritesFromStore.some(
@@ -20,7 +19,6 @@ const CountryCard = ({ item }: { item: Country }) => {
     } else {
       Dispatch(addFavorite(item));
     }
-    setFavorites(favoritesFromStore);
   };
   return (
     <View className="border border-black-500 m-1 p-2 rounded-3xl ">
@@ -37,9 +35,15 @@ const CountryCard = ({ item }: { item: Country }) => {
       <Text className="mx-5 ">{item.region}</Text>
       <TouchableOpacity
         onPress={() => handleFavorite({ item })}
-        className={` p-2 justify-center w-40 m-auto rounded-3xl ${favorites.some((elem) => elem.name.official === item.name.official) ? "bg-slate-800 " : "bg-slate-300"}`}
+        className={` p-2 justify-center w-40 m-auto rounded-3xl ${favoritesFromStore.some((elem) => elem.name.official === item.name.official) ? "bg-red-300 " : "bg-slate-300"}`}
       >
-        <Text className="m-auto">Favorite it</Text>
+        <Text className="m-auto">
+          {favoritesFromStore.some(
+            (elem) => elem.name.official == item.name.official,
+          )
+            ? `Favorite`
+            : `Favorite It`}
+        </Text>
       </TouchableOpacity>
     </View>
   );
