@@ -8,7 +8,6 @@ import { useEffect, useState } from "react";
 import { ActivityIndicator, FlatList, Text } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useDispatch, useSelector } from "react-redux";
-//https://restcountries.com/v3.1/region/{region} search by region api
 export default function App() {
   const dispatch = useDispatch();
   const totalCountries = useSelector((store: RootState) => store.country);
@@ -16,26 +15,35 @@ export default function App() {
   const [countriesVisible, setCountriesVisible] = useState<Country[]>([]);
 
   const [search, setSearch] = useState<string>("");
-  const handleSearch = (searchText: string) => {
+  const handleSearch = (
+    searchText: string,
+    listOfRegionsToSearchBy: string[],
+  ) => {
     setSearch(searchText);
     setCountriesVisible(
-      totalCountries.filter((country: Country) =>
-        country.name.official.includes(searchText),
+      totalCountries.filter(
+        (country: Country) =>
+          country.name.official.includes(searchText) &&
+          listOfRegionsToSearchBy.includes(country.region),
       ),
     );
   };
   useEffect(() => {
-    setIsLoading(true);
-    fetch(api)
-      .then((res) => res.json())
-      .then((data) => {
-        dispatch(addCountries(data));
-        setCountriesVisible(data);
+    const fetchCountries = async () => {
+      try {
+        const data = await fetch(api);
+        const json = await data.json();
+        dispatch(addCountries(json));
+        setCountriesVisible(json);
         setIsLoading(false);
-      })
-      .catch(() => setIsLoading(false));
+      } catch {
+        setIsLoading(false);
+      }
+    };
+    fetchCountries();
   }, []);
   if (isLoading === true) {
+    for (let i = 0; i < 9999999; i++);
     return (
       <SafeAreaView className="flex-1 items-center ">
         <Text>Loading</Text>
@@ -48,7 +56,7 @@ export default function App() {
     );
   }
   return (
-    <SafeAreaView className="flex-1 items-center mx-5">
+    <SafeAreaView className="flex-1 items-center  bg-slate-200">
       <Text className="text-3xl font-bold m-5">Find Your Country</Text>
       <SearchComponent search={search} handleSearch={handleSearch} />
       <FlatList

@@ -10,7 +10,7 @@ const Favorites = () => {
     (store: RootState) => store.favCountry,
   );
   return (
-    <SafeAreaView className="w-full h-full">
+    <SafeAreaView className="w-full h-full bg-slate-200">
       {favoritesFromStore.length == 0 ? (
         <NoFavorites />
       ) : (
