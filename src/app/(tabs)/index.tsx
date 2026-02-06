@@ -1,10 +1,11 @@
-import CountryCard from "@/components/CountryCard";
-import SearchComponent from "@/components/SearchComponent";
-import { api } from "@/utils/apis";
-import { addCountries } from "@/utils/countriesSlice";
-import { RootState } from "@/utils/store";
-import { Country } from "@/utils/types";
+import CountryCard from "@/src/components/CountryCard";
+import SearchComponent from "@/src/components/SearchComponent";
+import { api } from "@/src/utils/apis";
+import { addCountries } from "@/src/utils/countriesSlice";
+import { RootState } from "@/src/utils/store";
+import { Country } from "@/src/utils/types";
 import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { FlatList, Image, Text } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useDispatch, useSelector } from "react-redux";
@@ -13,6 +14,7 @@ export default function App() {
   const totalCountries = useSelector((store: RootState) => store.country);
   const [isLoading, setIsLoading] = useState(true);
   const [countriesVisible, setCountriesVisible] = useState<Country[]>([]);
+  const { t, i18n } = useTranslation();
 
   const [search, setSearch] = useState<string>("");
   const handleSearch = (
@@ -67,6 +69,7 @@ export default function App() {
       <Text className="text-3xl font-bold m-5 text-white">
         Find Your Country
       </Text>
+      <Text>Language {t("welcome")}</Text>
       <SearchComponent search={search} handleSearch={handleSearch} />
       <FlatList
         data={countriesVisible}

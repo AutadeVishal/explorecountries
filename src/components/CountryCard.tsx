@@ -1,6 +1,6 @@
-import { addFavorite, removeFavorite } from "@/utils/favCountriesSlice";
-import { RootState } from "@/utils/store";
-import { Country } from "@/utils/types";
+import { addFavorite, removeFavorite } from "@/src/utils/favCountriesSlice";
+import { RootState } from "@/src/utils/store";
+import { Country } from "@/src/utils/types";
 import { useRouter } from "expo-router";
 import React from "react";
 import { Image, Text, TouchableOpacity, View } from "react-native";

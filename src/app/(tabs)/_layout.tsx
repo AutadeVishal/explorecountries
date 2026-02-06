@@ -1,4 +1,4 @@
-import { RootState } from "@/utils/store";
+import { RootState } from "@/src/utils/store";
 import { Tabs } from "expo-router";
 import React from "react";
 import { Image } from "react-native";
@@ -18,7 +18,7 @@ const TabsLayout = () => {
       }}
     >
       <Tabs.Screen
-        name="App"
+        name="index"
         options={{
           tabBarIcon: ({ focused }) => (
             <Image
