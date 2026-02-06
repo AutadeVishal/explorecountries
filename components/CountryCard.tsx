@@ -27,36 +27,38 @@ const CountryCard = ({ item }: { item: Country }) => {
   };
   return (
     <TouchableOpacity onPress={() => handleCountryClick()}>
-      <View className="border border-black-500 m-4 p-2 rounded-3xl ">
+      <View className="border border-white m-5 p-3 rounded-3xl bg-slate-800  w-80">
         <Image
-          className="w-full h-40   rounded-3xl"
+          className="w-50 h-40 rounded-2xl"
           source={{
             uri: item.flags.png,
           }}
         />
         <TouchableOpacity
           onPress={() => handleFavorite({ item })}
-          className={` p-2 justify-center rounded-full absolute ${favoritesFromStore.some((elem) => elem.name.official === item.name.official) ? "bg-red-500 " : "bg-slate-300"}`}
+          className={`p-2 justify-center rounded-full absolute top-1 left-1 border-2 border-white ${favoritesFromStore.some((elem) => elem.name.official === item.name.official) ? "bg-red-500" : "bg-slate-700"}`}
         >
           {favoritesFromStore.some(
             (elem) => elem.name.official == item.name.official,
           ) ? (
             <Image
-              className="w-10 h-10 rounded-full"
+              className="w-10 h-10 rounded-full "
               source={require("../assets/icons/filledHeart.png")}
             />
           ) : (
             <Image
-              className="w-10 h-10 rounded-full"
+              className="w-10 h-10 rounded-full "
               source={require("../assets/icons/emptyHeart.png")}
             />
           )}
         </TouchableOpacity>
-        <View className="m-auto  my-3">
-          <Text className=" font-extrabold ">{item.name.official}</Text>
+        <View className="m-auto my-3">
+          <Text className="font-extrabold text-white text-center">
+            {item.name.official}
+          </Text>
         </View>
 
-        <Text className="  p-2 justify-center w-40  rounded-3xl bg-slate-400 m-auto ">
+        <Text className="text-center p-2 w-40 rounded-3xl bg-cyan-600 m-auto text-white font-semibold">
           {item.region}
         </Text>
       </View>

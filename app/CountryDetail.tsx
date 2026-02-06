@@ -1,8 +1,7 @@
 import { RootState } from "@/utils/store";
-import { Text } from "@react-navigation/elements";
 import { useLocalSearchParams } from "expo-router";
 import React from "react";
-import { Image, View } from "react-native";
+import { Image, ImageBackground, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useSelector } from "react-redux";
 export default function CountryDetail() {
@@ -15,31 +14,37 @@ export default function CountryDetail() {
 
   if (!country) {
     return (
-      <SafeAreaView className="bg-slate-200 justify-center h-full w-full">
-        <Text className="text-xl">Country not found</Text>
+      <SafeAreaView className="justify-center h-full w-full flex-1">
+        <ImageBackground
+          source={{ uri: "https://wallpapercave.com/wp/wp5136232.jpg" }}
+          className="flex-1 justify-center items-center"
+          imageStyle={{ opacity: 0.3 }}
+        >
+          <Text className="text-xl text-white">Country not found</Text>
+        </ImageBackground>
       </SafeAreaView>
     );
   }
   return (
-    <SafeAreaView className="flex-1 bg-slate-200 justify-center items-center px-4">
-      <View className="bg-white rounded-2xl shadow-lg overflow-hidden w-full max-w-sm">
+    <SafeAreaView className="flex-1 justify-center items-center px-4 bg-slate-900">
+      <View className="bg-slate-900  w-full border border-white rounded-lg">
         <Image
           source={{ uri: country.flags.png }}
-          className="w-full h-44"
+          className="w-full h-44 rounded-lg"
           resizeMode="cover"
         />
-        <View className="p-4 space-y-2">
-          <Text className="text-xl font-bold text-slate-800">
+        <View className="p-4 space-y-2 m-auto">
+          <Text className="text-2xl font-extrabold text-white">
             {country.name.official}
           </Text>
 
           <Text className="text-slate-600">
-            <Text className="font-semibold">Capital:</Text>{" "}
-            {country.capital?.[0] ?? "N/A"}
+            <Text className="font-semibold text-white">Capital: </Text>
+            {country.capital}
           </Text>
 
           <Text className="text-slate-600">
-            <Text className="font-semibold">Population:</Text>{" "}
+            <Text className="font-semibold text-white">Population: </Text>
             {country.population.toLocaleString()}
           </Text>
         </View>

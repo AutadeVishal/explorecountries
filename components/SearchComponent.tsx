@@ -8,14 +8,7 @@ type SearchComponentProps = {
 };
 
 const SearchComponent = ({ search, handleSearch }: SearchComponentProps) => {
-  const regions = [
-    "Asia",
-    "Europe",
-    "Africa",
-    "America",
-    "Americas",
-    "Oceania",
-  ];
+  const regions = ["Asia", "Europe", "Africa", "Americas", "Oceania"];
   const [filteredRegions, setFilteredRegions] = useState<string[]>(regions);
 
   useEffect(() => {
@@ -26,10 +19,11 @@ const SearchComponent = ({ search, handleSearch }: SearchComponentProps) => {
     <View>
       <TextInput
         value={search}
-        className="border border-black-5  p-5 rounded-3xl"
+        className="border border-white p-5 rounded-3xl bg-slate-800 text-white"
         onChange={(e) => handleSearch(e.nativeEvent.text, filteredRegions)}
         placeholder="Search"
-      ></TextInput>
+        placeholderTextColor="#94a3b8"
+      />
       <View className="flex-row">
         <FlatList
           horizontal

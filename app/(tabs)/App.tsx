@@ -5,7 +5,7 @@ import { addCountries } from "@/utils/countriesSlice";
 import { RootState } from "@/utils/store";
 import { Country } from "@/utils/types";
 import { useEffect, useState } from "react";
-import { ActivityIndicator, FlatList, Text } from "react-native";
+import { FlatList, Image, Text } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useDispatch, useSelector } from "react-redux";
 export default function App() {
@@ -44,20 +44,29 @@ export default function App() {
   }, []);
   if (isLoading === true) {
     for (let i = 0; i < 9999999; i++);
+    for (let i = 0; i < 9999999; i++);
+    for (let i = 0; i < 9999999; i++);
+    for (let i = 0; i < 9999999; i++);
     return (
-      <SafeAreaView className="flex-1 items-center ">
-        <Text>Loading</Text>
+      <SafeAreaView className="flex-1 items-center bg-slate-900">
+        {/* <Text>Loading</Text>
         <ActivityIndicator
           className="flex-1  justify-center "
           size="large"
           color="#007AFF"
+        /> */}
+        <Image
+          className="flex-1 h-full w-full"
+          source={require("../../assets/images/imageToBackground.jpg")}
         />
       </SafeAreaView>
     );
   }
   return (
-    <SafeAreaView className="flex-1 items-center  bg-slate-200">
-      <Text className="text-3xl font-bold m-5">Find Your Country</Text>
+    <SafeAreaView className="flex-1 items-center p-2 bg-slate-900">
+      <Text className="text-3xl font-bold m-5 text-white">
+        Find Your Country
+      </Text>
       <SearchComponent search={search} handleSearch={handleSearch} />
       <FlatList
         data={countriesVisible}

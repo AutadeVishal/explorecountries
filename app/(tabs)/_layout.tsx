@@ -13,7 +13,7 @@ const TabsLayout = () => {
     <Tabs
       screenOptions={{
         tabBarShowLabel: false,
-        tabBarStyle: { backgroundColor: "#E2E8F0" },
+        tabBarStyle: { backgroundColor: "#1e293b", borderTopColor: "#334155" },
         headerShown: false,
       }}
     >
@@ -22,8 +22,9 @@ const TabsLayout = () => {
         options={{
           tabBarIcon: ({ focused }) => (
             <Image
-              className={`${focused ? "w-[45px] h-[45px] p-2 rounded-xl bg-slate-400" : "w-[30px] h-[30px]"}`}
+              className={`${focused ? "w-[45px] h-[45px] p-2 rounded-xl bg-cyan-600" : "w-[30px] h-[30px]"}`}
               source={require("../../assets/icons/home.png")}
+              style={{ tintColor: focused ? "black" : "white" }}
             />
           ),
         }}
@@ -33,11 +34,13 @@ const TabsLayout = () => {
         options={{
           tabBarIcon: ({ focused }) => (
             <Image
-              className={`${focused ? "w-[40px] h-[40px] p-2 rounded-xl bg-slate-400" : "w-[20px] h-[20px]"}`}
+              className={`${focused ? "w-[40px] h-[40px] p-2 rounded-xl bg-cyan-600" : "w-[20px] h-[20px]"}`}
               source={require("../../assets/icons/favorites.png")}
+              style={{ tintColor: focused ? "black" : "white" }}
             />
           ),
           tabBarBadge: favoritesFromStore.length,
+          tabBarBadgeStyle: { backgroundColor: "#06b6d4" },
         }}
       />
     </Tabs>
