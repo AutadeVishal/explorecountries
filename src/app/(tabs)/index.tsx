@@ -14,7 +14,7 @@ export default function App() {
   const totalCountries = useSelector((store: RootState) => store.country);
   const [isLoading, setIsLoading] = useState(true);
   const [countriesVisible, setCountriesVisible] = useState<Country[]>([]);
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
 
   const [search, setSearch] = useState<string>("");
   const handleSearch = (
@@ -45,18 +45,8 @@ export default function App() {
     fetchCountries();
   }, []);
   if (isLoading === true) {
-    for (let i = 0; i < 9999999; i++);
-    for (let i = 0; i < 9999999; i++);
-    for (let i = 0; i < 9999999; i++);
-    for (let i = 0; i < 9999999; i++);
     return (
       <SafeAreaView className="flex-1 items-center bg-slate-900">
-        {/* <Text>Loading</Text>
-        <ActivityIndicator
-          className="flex-1  justify-center "
-          size="large"
-          color="#007AFF"
-        /> */}
         <Image
           className="flex-1 h-full w-full"
           source={require("../../assets/images/imageToBackground.jpg")}
@@ -66,10 +56,9 @@ export default function App() {
   }
   return (
     <SafeAreaView className="flex-1 items-center p-2 bg-slate-900">
-      <Text className="text-3xl font-bold m-5 text-white">
-        Find Your Country
+      <Text className="text-4xl font-bold m-5 text-white p-4">
+        {t("Title")}
       </Text>
-      <Text>Language {t("welcome")}</Text>
       <SearchComponent search={search} handleSearch={handleSearch} />
       <FlatList
         data={countriesVisible}

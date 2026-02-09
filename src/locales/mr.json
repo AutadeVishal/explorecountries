@@ -1,0 +1,16 @@
+{
+  "settings": "सेटिंग्स",
+  "Search": "शोधा",
+  "Title": "तुमचा देश शोधा",
+  "NoFavorites": "कोणतेही आवडीचे सापडले नाही",
+  "Favorites": "आवडीचे ",
+  "Capital": "राजधानी",
+  "Population": "लोकसंख्या",
+  "Regions": {
+    "Asia": "आशिया",
+    "Africa": "आफ्रिका",
+    "Europe": "युरोप",
+    "Americas": "अमेरिका",
+    "Oceania": "ओशियानिया"
+  }
+}

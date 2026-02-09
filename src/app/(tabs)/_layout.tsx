@@ -13,7 +13,7 @@ const TabsLayout = () => {
     <Tabs
       screenOptions={{
         tabBarShowLabel: false,
-        tabBarStyle: { backgroundColor: "#1e293b", borderTopColor: "#334155" },
+        tabBarStyle: { backgroundColor: "#1e293b" },
         headerShown: false,
       }}
     >
@@ -22,7 +22,7 @@ const TabsLayout = () => {
         options={{
           tabBarIcon: ({ focused }) => (
             <Image
-              className={`${focused ? "w-[45px] h-[45px] p-2 rounded-xl bg-cyan-600" : "w-[30px] h-[30px]"}`}
+              className={`${focused ? "w-[45px] h-[45px] p-2 rounded-xl bg-cyan-400" : "w-[30px] h-[30px]"}`}
               source={require("../../assets/icons/home.png")}
               style={{ tintColor: focused ? "black" : "white" }}
             />
@@ -41,6 +41,18 @@ const TabsLayout = () => {
           ),
           tabBarBadge: favoritesFromStore.length,
           tabBarBadgeStyle: { backgroundColor: "#06b6d4" },
+        }}
+      />
+      <Tabs.Screen
+        name="Settings"
+        options={{
+          tabBarIcon: ({ focused }) => (
+            <Image
+              className={`${focused ? "w-[45px] h-[45px] p-2 rounded-xl bg-cyan-600" : "w-[30px] h-[30px]"}`}
+              source={require("../../assets/icons/setting.png")}
+              style={{ tintColor: focused ? "black" : "white" }}
+            />
+          ),
         }}
       />
     </Tabs>

@@ -3,6 +3,7 @@ import { RootState } from "@/src/utils/store";
 import { Country } from "@/src/utils/types";
 import { useRouter } from "expo-router";
 import React from "react";
+import { useTranslation } from "react-i18next";
 import { Image, Text, TouchableOpacity, View } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 const CountryCard = ({ item }: { item: Country }) => {
@@ -25,6 +26,7 @@ const CountryCard = ({ item }: { item: Country }) => {
   const handleCountryClick = () => {
     router.push(`/CountryDetail?countryName=${item.name.official}`);
   };
+  const { t } = useTranslation();
   return (
     <TouchableOpacity onPress={() => handleCountryClick()}>
       <View className="border border-white m-5 p-3 rounded-3xl bg-slate-800  w-80">
@@ -36,18 +38,18 @@ const CountryCard = ({ item }: { item: Country }) => {
         />
         <TouchableOpacity
           onPress={() => handleFavorite({ item })}
-          className={`p-2 justify-center rounded-full absolute top-1 left-1 border-2 border-white ${favoritesFromStore.some((elem) => elem.name.official === item.name.official) ? "bg-red-500" : "bg-slate-700"}`}
+          className={`p-2 justify-center rounded-full absolute top-1 left-1 border-2 border-white ${favoritesFromStore.some((elem) => elem.name.official === item.name.official) ? "bg-black" : "bg-white"}`}
         >
           {favoritesFromStore.some(
             (elem) => elem.name.official == item.name.official,
           ) ? (
             <Image
-              className="w-10 h-10 rounded-full "
+              className="w-10 h-10  "
               source={require("../assets/icons/filledHeart.png")}
             />
           ) : (
             <Image
-              className="w-10 h-10 rounded-full "
+              className="w-10 h-10 "
               source={require("../assets/icons/emptyHeart.png")}
             />
           )}
@@ -59,7 +61,7 @@ const CountryCard = ({ item }: { item: Country }) => {
         </View>
 
         <Text className="text-center p-2 w-40 rounded-3xl bg-cyan-600 m-auto text-white font-semibold">
-          {item.region}
+          {t(`Regions.${item.region}`)}
         </Text>
       </View>
     </TouchableOpacity>

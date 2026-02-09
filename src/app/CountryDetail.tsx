@@ -1,6 +1,7 @@
 import { RootState } from "@/src/utils/store";
 import { useLocalSearchParams } from "expo-router";
 import React from "react";
+import { useTranslation } from "react-i18next";
 import { Image, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useSelector } from "react-redux";
@@ -11,6 +12,7 @@ export default function CountryDetail() {
   const country = totalCountries.find(
     (item) => item.name.official === countryName,
   );
+  const { t } = useTranslation();
   return (
     <SafeAreaView className="flex-1 justify-center items-center px-4 bg-slate-900">
       <View className="bg-slate-900  w-full border border-white rounded-lg">
@@ -25,12 +27,14 @@ export default function CountryDetail() {
           </Text>
 
           <Text className="text-slate-600">
-            <Text className="font-semibold text-white">Capital: </Text>
+            <Text className="font-semibold text-white">{t("Capital")} : </Text>
             {country?.capital}
           </Text>
 
           <Text className="text-slate-600">
-            <Text className="font-semibold text-white">Population: </Text>
+            <Text className="font-semibold text-white">
+              {t("Population")} :
+            </Text>
             {country?.population}
           </Text>
         </View>

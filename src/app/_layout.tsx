@@ -1,8 +1,9 @@
 import appStore from "@/src/utils/store";
 import { Stack } from "expo-router";
+import "react-native-gesture-handler";
 import { Provider } from "react-redux";
 import "../../global.css";
-import "../lib/i18.ts";
+import "../i18n";
 export default function RootLayout() {
   return (
     <Provider store={appStore}>

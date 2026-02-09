@@ -1,0 +1,16 @@
+{
+  "settings": "Paramètres",
+  "Search": "Rechercher",
+  "Title": "Trouvez votre pays",
+  "NoFavorites": "Aucun favori trouvé",
+  "Favorties": "favori",
+  "Capital": "Capitale",
+  "Population": "Population",
+  "Regions": {
+    "Asia": "Asie",
+    "Africa": "Afrique",
+    "Europe": "Europe",
+    "Americas": "Amériques",
+    "Oceania": "Océanie"
+  }
+}
